@@ -299,6 +299,10 @@ input[type="number"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.field:has(.field__label) .field__input > input::placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
 .field__label {
   position: absolute;
   left: 0.875rem;
