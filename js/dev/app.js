@@ -1149,14 +1149,16 @@ document.addEventListener("DOMContentLoaded", function() {
     item.addEventListener("mouseleave", function(e) {
       const relatedTarget = e.relatedTarget;
       const isMovingToSubmenu = submenu && submenu.contains(relatedTarget);
-      if (!isMovingToSubmenu) {
+      const isStillInMenu = menu.contains(relatedTarget);
+      if (!isMovingToSubmenu && !isStillInMenu) {
+        if (timeoutId) clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           if (currentActiveItem === item) {
             item.classList.remove("_active");
             currentActiveItem = null;
             decor.classList.add("_hidden");
           }
-        }, 500);
+        }, 300);
       }
     });
     if (submenu) {
