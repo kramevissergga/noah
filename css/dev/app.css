@@ -523,7 +523,6 @@ body {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  color: #707070;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: block;
@@ -532,9 +531,6 @@ body {
 }
 .--select-open .select__value:after {
   transform: rotate(-180deg);
-}
-.select--lang .select__value:after {
-  color: #090909;
 }
 .select__value.--select-pseudo-label::before {
   content: attr(data-pseudo-label);
