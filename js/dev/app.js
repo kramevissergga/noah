@@ -4026,8 +4026,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     feedbackSlider.mount();
   });
-  const productSliders = document.querySelectorAll(".gallery-popup__sliders");
-  if (productSliders.length) {
+  const gallerySliders = document.querySelectorAll(".gallery-popup__sliders");
+  if (gallerySliders.length) {
     const mainSplide = new Splide(".gallery-popup__main", {
       type: "fade",
       perPage: 1,
