@@ -10344,6 +10344,35 @@ window.addEventListener("load", function() {
     }
   }, 300);
 });
+document.addEventListener("click", (event) => {
+  const playBtn = event.target.closest(".videobox__play");
+  if (playBtn) {
+    const videoBody = playBtn.closest(".videobox");
+    if (videoBody) {
+      videoBody.replaceChildren();
+      if (videoBody.dataset.ytCode) {
+        const urlVideo = `https://www.youtube.com/embed/${videoBody.dataset.ytCode}?autoplay=1`;
+        const iframe = document.createElement("iframe");
+        iframe.setAttribute("allowfullscreen", "");
+        iframe.setAttribute("allow", "autoplay; encrypted-media");
+        iframe.setAttribute("src", urlVideo);
+        videoBody.appendChild(iframe);
+      } else if (videoBody.dataset.vidSrc) {
+        const video = document.createElement("video");
+        video.setAttribute("controls", "");
+        video.setAttribute("autoplay", "");
+        const source = document.createElement("source");
+        source.setAttribute("src", videoBody.dataset.vidSrc);
+        source.setAttribute(
+          "type",
+          `video/${videoBody.dataset.vidSrc.split(".").pop()}`
+        );
+        video.appendChild(source);
+        videoBody.appendChild(video);
+      }
+    }
+  }
+});
 class ScrollWatcher {
   constructor(props) {
     let defaultConfig = {
@@ -14614,6 +14643,182 @@ function addAnimation() {
     });
   });
 }
+function initContactsMaps$1() {
+  const mapElements = document.querySelectorAll(".contacts-map");
+  if (mapElements.length === 0) return;
+  const mapStyle = [
+    {
+      featureType: "administrative",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: "-100"
+        }
+      ]
+    },
+    {
+      featureType: "administrative.province",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off"
+        }
+      ]
+    },
+    {
+      featureType: "landscape",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: -100
+        },
+        {
+          lightness: 65
+        },
+        {
+          visibility: "on"
+        }
+      ]
+    },
+    {
+      featureType: "poi",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: -100
+        },
+        {
+          lightness: "50"
+        },
+        {
+          visibility: "simplified"
+        }
+      ]
+    },
+    {
+      featureType: "road",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: "-100"
+        }
+      ]
+    },
+    {
+      featureType: "road.highway",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "simplified"
+        }
+      ]
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "all",
+      stylers: [
+        {
+          lightness: "30"
+        }
+      ]
+    },
+    {
+      featureType: "road.local",
+      elementType: "all",
+      stylers: [
+        {
+          lightness: "40"
+        }
+      ]
+    },
+    {
+      featureType: "transit",
+      elementType: "all",
+      stylers: [
+        {
+          saturation: -100
+        },
+        {
+          visibility: "simplified"
+        }
+      ]
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [
+        {
+          hue: "#ffff00"
+        },
+        {
+          lightness: -25
+        },
+        {
+          saturation: -97
+        }
+      ]
+    },
+    {
+      featureType: "water",
+      elementType: "labels",
+      stylers: [
+        {
+          lightness: -25
+        },
+        {
+          saturation: -100
+        }
+      ]
+    }
+  ];
+  mapElements.forEach((mapElement) => {
+    const markerCoords = mapElement.dataset.marker.split(",").map(Number);
+    const latitude = markerCoords[0];
+    const longitude = markerCoords[1];
+    const markerTitle = mapElement.dataset.markerTitle || "Маркер";
+    const center = { lat: latitude, lng: longitude };
+    const getMarkerScale = () => {
+      if (window.matchMedia("(max-width: 768px)").matches) return 0.7;
+      return 1;
+    };
+    const map = new google.maps.Map(mapElement, {
+      zoom: 17,
+      center,
+      styles: mapStyle,
+      disableDefaultUI: true,
+      zoomControl: true
+    });
+    const svgMarker = {
+      path: "M22.958 13.9954C22.1032 13.6802 21.1825 13.5086 20.223 13.5086C15.7278 13.5086 12.0838 17.2748 12.0838 21.9207C12.0838 23.2436 12.3792 24.4951 12.9057 25.6087C14.228 28.406 17.0078 30.3327 20.223 30.3327C24.7181 30.3327 28.3622 26.5665 28.3622 21.9207C28.3622 18.2665 26.1078 15.1566 22.958 13.9954ZM41.3058 21.7455C41.3146 26.7653 39.5894 31.6236 36.4406 35.4457L36.0054 35.9758L22.3595 50.9466C22.1614 51.1641 21.9222 51.3374 21.6569 51.4559C21.3915 51.5743 21.1055 51.6354 20.8165 51.6354C20.5274 51.6354 20.2414 51.5743 19.9761 51.4559C19.7107 51.3374 19.4716 51.1641 19.2734 50.9466L5.62755 35.9758L5.19233 35.4457C2.04358 31.6236 0.318345 26.7653 0.327182 21.7455C0.327182 10.0504 9.50073 0.569336 20.8165 0.569336C32.1322 0.569336 41.3058 10.0504 41.3058 21.7455Z",
+      fillColor: "#FF8300",
+      fillOpacity: 0.9,
+      strokeWeight: 0,
+      rotation: 0,
+      scale: getMarkerScale(),
+      anchor: new google.maps.Point(41, 51)
+    };
+    const marker = new google.maps.Marker({
+      position: center,
+      map,
+      icon: svgMarker,
+      title: markerTitle,
+      animation: google.maps.Animation.DROP
+    });
+    window.matchMedia("(min-width: 1200px)").addListener(() => {
+      marker.setIcon({
+        ...marker.getIcon(),
+        scale: getMarkerScale()
+      });
+    });
+    window.matchMedia("(min-width: 768px)").addListener(() => {
+      marker.setIcon({
+        ...marker.getIcon(),
+        scale: getMarkerScale()
+      });
+    });
+  });
+}
+initContactsMaps$1();
 function initContactsMaps() {
   const mapElements = document.querySelectorAll(".contacts-map");
   if (mapElements.length === 0) return;
