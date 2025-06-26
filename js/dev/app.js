@@ -862,29 +862,31 @@ class SelectConstructor {
     );
   }
 }
-document.querySelector("select[data-fls-select]") ? window.addEventListener(
-  "load",
-  () => window.flsSelect = new SelectConstructor({})
-) : null;
-document.querySelector("select[data-lang-select]") && window.addEventListener("load", () => {
-  window.flsSelect = new SelectConstructor({});
-  setTimeout(() => {
-    document.body.addEventListener("click", (e) => {
-      const option = e.target.closest(".select__option");
-      if (!option) return;
-      const selectWrapper = option.closest(".select");
-      if (!selectWrapper) return;
-      const realSelect = selectWrapper.querySelector(
-        "select[data-lang-select]"
-      );
-      if (!realSelect) return;
-      const url = option.getAttribute("data-fls-select-value");
-      if (url) {
-        localStorage.setItem("selectedLangUrl", url);
-        window.location.href = url;
-      }
-    });
-  }, 100);
+window.addEventListener("load", () => {
+  const selects = document.querySelectorAll("select[data-fls-select]");
+  if (selects.length > 0) {
+    window.flsSelect = new SelectConstructor({});
+  }
+  const langSelect = document.querySelector("select[data-lang-select]");
+  if (langSelect) {
+    setTimeout(() => {
+      document.body.addEventListener("click", (e) => {
+        const option = e.target.closest(".select__option");
+        if (!option) return;
+        const selectWrapper = option.closest(".select");
+        if (!selectWrapper) return;
+        const realSelect = selectWrapper.querySelector(
+          "select[data-lang-select]"
+        );
+        if (!realSelect) return;
+        const url = option.getAttribute("data-fls-select-value");
+        if (url) {
+          localStorage.setItem("selectedLangUrl", url);
+          window.location.href = url;
+        }
+      });
+    }, 100);
+  }
 });
 function spoilers() {
   const spoilersArray = document.querySelectorAll("[data-fls-spoilers]");
