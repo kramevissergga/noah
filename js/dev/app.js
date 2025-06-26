@@ -206,7 +206,7 @@ const gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) =>
     targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
     targetBlockElementPosition = offsetTop ? targetBlockElementPosition - offsetTop : targetBlockElementPosition;
     window.scrollTo({
-      top: targetBlockElementPosition - window.scrollOffset,
+      top: targetBlockElementPosition - window.scrollOffset - 50,
       behavior: "smooth"
     });
   }
@@ -1126,9 +1126,6 @@ window.addEventListener("resize", () => {
   updateHeaderHeights();
 });
 window.onload = function() {
-  setTimeout(() => {
-    updateHeaderHeights();
-  }, 300);
 };
 document.addEventListener("DOMContentLoaded", function() {
   const menuItems = document.querySelectorAll(".menu__item");
@@ -1136,6 +1133,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const decor = document.querySelector(".decor");
   let timeoutId = null;
   let currentActiveItem = null;
+  setTimeout(() => {
+    updateHeaderHeights();
+  }, 300);
   function getOffsetFromMenu(item) {
     let offsetLeft = 0;
     let currentElement = item;
@@ -10300,7 +10300,7 @@ ScrollTrigger.core = {
 _getGSAP2() && gsap.registerPlugin(ScrollTrigger);
 gsapWithCSS.registerPlugin(ScrollTrigger);
 document.querySelectorAll("[data-arrow-symbol]").forEach((element) => {
-  element.textContent = "<" + element.textContent;
+  element.textContent = "< " + element.textContent;
 });
 window.scrollOffset = 0;
 window.addEventListener("load", function() {
@@ -10310,7 +10310,6 @@ window.addEventListener("load", function() {
     );
     const stoppers = document.querySelectorAll("[data-stopper]");
     if (stoppers) {
-      console.log("+");
       stoppers.forEach((stopper) => {
         let cumulativeHeight = 0;
         stopper.querySelectorAll("[data-sticky]").forEach((el, index) => {

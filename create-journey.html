@@ -6,8 +6,8 @@
 		<link rel="preload" href="./assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Create Journey</title>
-		<script type="module" crossorigin="" src="./js/app.min.js?v=1750389446954"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750389446954">
+		<script type="module" crossorigin="" src="./js/app.min.js?v=1750903969487"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750903969487">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -467,16 +467,19 @@
 										I’m Interested In
 									</h2>
 									<div class="create-journey__type">
-										<label class="create-journey__radio radio">
-											<span class="radio__icon"></span>
+										<!-- Зміна: всі <input> всередину radio__icon і <div> замість <label> -->
+										<div class="create-journey__radio radio">
+											<span class="radio__icon">
+												<input checked type="radio" name="tour-type">
+											</span>
 											A private Tour
-											<input checked type="radio" name="tour-type">
-										</label>
-										<label class="create-journey__radio radio">
-											<span class="radio__icon"></span>
+										</div>
+										<div class="create-journey__radio radio">
+											<span class="radio__icon">
+												<input type="radio" name="tour-type">
+											</span>
 											Joining a Group Tour
-											<input type="radio" name="tour-type">
-										</label>
+										</div>
 									</div>
 								</div>
 								<div class="create-journey__block create-journey__block--dates">
@@ -509,16 +512,18 @@
 												<span>*</span>
 											</div>
 											<div class="field__radiobox">
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input type="radio" name="dates">
+													</span>
 													Yes
-													<input type="radio" name="dates">
-												</label>
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												</div>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input checked type="radio" name="dates">
+													</span>
 													No
-													<input checked type="radio" name="dates">
-												</label>
+												</div>
 											</div>
 										</div>
 										<div class="create-journey__field field--18 field">
@@ -544,16 +549,19 @@
 										<div class="create-journey__field field--18 field">
 											<div class="field__text">Dinners included</div>
 											<div class="field__radiobox">
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												<!-- Зміна: всі <input> всередину radio__icon і <div> замість <label> -->
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input checked type="radio" name="dinner">
+													</span>
 													No
-													<input checked type="radio" name="dinner">
-												</label>
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												</div>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input type="radio" name="dinner">
+													</span>
 													Yes
-													<input type="radio" name="dinner">
-												</label>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -563,47 +571,56 @@
 										<img src="data:image/svg+xml,%3csvg%20width='43'%20height='52'%20viewBox='0%200%2043%2052'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1%201L0.999998%2051'%20stroke='%23585858'%20stroke-width='2'%20stroke-linecap='round'/%3e%3cpath%20d='M1%2034H41L33.3333%2020.6364L41%206H1'%20stroke='%23585858'%20stroke-width='2'%20stroke-linecap='round'/%3e%3cellipse%20cx='18.7786'%20cy='20'%20rx='3.33333'%20ry='3'%20fill='%23585858'/%3e%3c/svg%3e" alt="Image">
 										Tour Focus / Interest
 									</h2>
+									<!-- Зміна: всі <input> всередину checkbox__icon і <div> замість <label> -->
 									<div class="create-journey__interests">
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Religion</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Family</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Relaxation</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Culinary</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">History</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Romantic</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Archaeology</div>
-											<input type="checkbox">
-										</label>
-										<label class="create-journey__checkbox checkbox checkbox--block">
-											<div class="checkbox__icon _icon-check"></div>
+										</div>
+										<div class="create-journey__checkbox checkbox checkbox--block">
+											<div class="checkbox__icon _icon-check">
+												<input type="checkbox">
+											</div>
 											<div class="checkbox__label">Other</div>
-											<input type="checkbox">
-										</label>
+										</div>
 									</div>
 									<div class="create-journey__info field field--18">
 										<div class="field__input field__input--gray">
@@ -614,36 +631,41 @@
 										<div class="create-journey__field field--18 field">
 											<div class="field__text field__text--bold">Have you been to Israel before?</div>
 											<div class="field__radiobox">
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input checked type="radio" name="dates">
+													</span>
 													No
-													<input checked type="radio" name="dates">
-												</label>
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												</div>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input type="radio" name="dates">
+													</span>
 													Yes
-													<input type="radio" name="dates">
-												</label>
+												</div>
 											</div>
 										</div>
 										<div class="create-journey__field field--18 field">
 											<div class="field__text field__text--bold">What countries would you like to visit?</div>
 											<div class="field__checkboxes">
-												<label class="field__checkbox checkbox checkbox--block">
-													<div class="checkbox__icon _icon-check"></div>
+												<div class="field__checkbox checkbox checkbox--block">
+													<div class="checkbox__icon _icon-check">
+														<input type="checkbox">
+													</div>
 													<div class="checkbox__label">Israel</div>
-													<input type="checkbox">
-												</label>
-												<label class="field__checkbox checkbox checkbox--block">
-													<div class="checkbox__icon _icon-check"></div>
+												</div>
+												<div class="field__checkbox checkbox checkbox--block">
+													<div class="checkbox__icon _icon-check">
+														<input type="checkbox">
+													</div>
 													<div class="checkbox__label">Jordan</div>
-													<input type="checkbox">
-												</label>
-												<label class="field__checkbox checkbox checkbox--block">
-													<div class="checkbox__icon _icon-check"></div>
+												</div>
+												<div class="field__checkbox checkbox checkbox--block">
+													<div class="checkbox__icon _icon-check">
+														<input type="checkbox">
+													</div>
 													<div class="checkbox__label">Egypt</div>
-													<input type="checkbox">
-												</label>
+												</div>
 											</div>
 										</div>
 									</div>

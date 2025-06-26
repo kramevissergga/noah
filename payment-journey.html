@@ -6,8 +6,8 @@
 		<link rel="preload" href="./assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Payment</title>
-		<script type="module" crossorigin="" src="./js/app.min.js?v=1750389446954"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750389446954">
+		<script type="module" crossorigin="" src="./js/app.min.js?v=1750903969487"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750903969487">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -445,11 +445,12 @@
 									<div class="roadmap-tour__icon"></div>
 									Tour and Personal Detals
 								</div>
-								<div class="roadmap-tour__item _active">
+								<!-- Зміна: Додано .disabled -->
+								<div class="roadmap-tour__item _disabled _active">
 									<div class="roadmap-tour__icon"></div>
 									Payment Details
 								</div>
-								<div class="roadmap-tour__item">
+								<div class="roadmap-tour__item _disabled">
 									<div class="roadmap-tour__icon"></div>
 									Confirmation of Your Booking
 								</div>
@@ -471,87 +472,132 @@
 												<img alt="Image" src="./assets/img/payment/02.webp">
 												<img src="./assets/img/payment/03.svg" alt="Image">
 											</div>
-											<div class="payment-j__body">
-												<div class="payment-j__field field field--18">
-													<div class="field__text">
-														Card Holders Name
-														<span>*</span>
-													</div>
-													<div class="field__input field__input--gray">
-														<input name="name" value="David Smith" type="text">
-													</div>
-												</div>
-												<div class="payment-j__field field field--18">
-													<div class="field__text">
-														Card Number
-														<span>*</span>
-													</div>
-													<div class="field__card">
-														<div class="validated"></div>
-														<div class="field__input field__input--gray">
-															<input name="card-part" type="number">
+											<div class="payment__body">
+												<div class="payment__block payment__block--card">
+													<div class="payment__fields">
+														<div class="payment__field field--18 field">
+															<div class="field__text">
+																Name on Card
+																<span>*</span>
+															</div>
+															<div class="field__input field__input--gray">
+																<input type="text">
+															</div>
 														</div>
-														<div class="field__input field__input--gray">
-															<input name="card-part" type="number">
+														<div class="payment__field field--18 field">
+															<div class="field__text">
+																Card Type
+																<span>*</span>
+															</div>
+															<div class="field__input field__input--gray">
+																<select name="form[]" data-fls-select="" data-fls-select-modif="gray">
+																	<option value="1" selected>Visa</option>
+																	<option value="2">MasterCard</option>
+																</select>
+															</div>
 														</div>
-														<div class="field__input field__input--gray">
-															<input name="card-part" type="number">
+														<div class="payment__field payment__field--card-num field--18 field">
+															<div class="field__text">
+																Card Number
+																<span>*</span>
+															</div>
+															<div class="field__card">
+																<div class="validated"></div>
+																<div class="field__input field__input--gray">
+																	<input name="card-part" type="number">
+																</div>
+																<div class="field__input field__input--gray">
+																	<input name="card-part" type="number">
+																</div>
+																<div class="field__input field__input--gray">
+																	<input name="card-part" type="number">
+																</div>
+																<div class="field__input field__input--gray">
+																	<input name="card-part" type="number">
+																</div>
+															</div>
 														</div>
-														<div class="field__input field__input--gray">
-															<input name="card-part" type="number">
-														</div>
-													</div>
-												</div>
-												<div class="payment-j__card-info">
-													<div class="payment-j__field field field--18">
-														<div class="field__text">
-															Experation Date
-															<span>*</span>
-														</div>
-														<div class="field__input field__input--gray">
-															<div class="validated validated--inner"></div>
-															<input name="name" value="01/30" type="text">
-														</div>
-													</div>
-													<div class="payment-j__field field field--18">
-														<div class="field__text">
-															CVC
-															<span>*</span>
-														</div>
-														<div class="field__input field__input--gray">
-															<div class="validated validated--inner"></div>
-															<input name="name" value="01/30" type="text">
+														<div class="payment__card-data">
+															<div class="payment__field field--18 field">
+																<div class="field__text">
+																	Card Data
+																	<span>*</span>
+																</div>
+																<div class="field__card-data">
+																	<div class="field field--18">
+																		<div class="field__input field__input--gray">
+																			<div class="field__input field__input--gray">
+																				<select name="form[]" data-fls-select="" data-fls-select-modif="gray">
+																					<option value="1" selected>01</option>
+																					<option value="2">02</option>
+																					<option value="3">03</option>
+																					<option value="4">04</option>
+																					<option value="5">05</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="field__info-label">Month</div>
+																	</div>
+																	<div class="field field--18">
+																		<div class="field__input field__input--gray">
+																			<div class="validated"></div>
+																			<select name="form[]" data-fls-select="" data-fls-select-modif="gray">
+																				<option value="1" selected>2025</option>
+																				<option value="2">2026</option>
+																				<option value="3">2027</option>
+																				<option value="4">2028</option>
+																				<option value="5">2029</option>
+																			</select>
+																		</div>
+																		<div class="field__info-label">Year</div>
+																	</div>
+																</div>
+															</div>
+															<div class="payment__field payment__field--cvc field--18 field">
+																<div class="field__text">
+																	CVC
+																	<span>*</span>
+																</div>
+																<div class="field__input field__input--center field__input--gray">
+																	<div class="validated"></div>
+																	<input type="number">
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-											<label class="payment-j__checkbox checkbox">
-												<div class="checkbox__icon _icon-check"></div>
+											<!-- Зміна: всі <input> всередину checkbox__icon і <div> замість <label> -->
+											<div class="payment-j__checkbox checkbox">
+												<div class="checkbox__icon _icon-check">
+													<input type="checkbox">
+												</div>
 												<div class="checkbox__label">
 													Terms and Conditions
 													<span>
-														By clicking book now you confirm that you have read understood and accepted our Terms and
-                      Condtions
+														By clicking book now you confirm that you have read understood and accepted our
+														<a href="#">Terms
+                        and
+                        Condtions</a>
 													</span>
 												</div>
-												<input type="checkbox">
-											</label>
-											<label class="payment-j__checkbox checkbox">
-												<div class="checkbox__icon _icon-check"></div>
+											</div>
+											<div class="payment-j__checkbox checkbox">
+												<div class="checkbox__icon _icon-check">
+													<input type="checkbox">
+												</div>
 												<div class="checkbox__label">
 													Legibility Entry to Israel
 													<span>
 														By clicking book now you confirm that you have have check and have legibility to enter Israel
-                      Terms
-                      and Conditions Payment
+														<a href="#">Terms and Conditions Payment</a>
 													</span>
 												</div>
-												<input type="checkbox">
-											</label>
+											</div>
 										</form>
 									</div>
 								</div>
-								<div data-fls-dynamic=".journey-tour__booking-body .journey-tour__container, 899.98, first" class="journey-tour__summary summary-journey">
+								<div data-fls-dynamic=".journey-tour__booking-body .journey-tour__container, 991.98, first" class="journey-tour__summary summary-journey">
 									<h3 class="summary-journey__title">Summary</h3>
 									<div class="summary-journey__text text">
 										<b>The Best of Israel 8 Day Tour</b>
@@ -583,14 +629,25 @@
 									<div class="journey-tour__label">If you’re paying online you will be charged NOW</div>
 								</div>
 							</div>
-							<div class="journey-tour__giraffe giraffe">
+							<!-- Зміна декорацій -->
+							<div class="journey-tour__giraffe giraffe pc">
 								<svg class="icon">
 									<use xlink:href="./assets/img/animals.svg#giraffe"></use>
 								</svg>
 							</div>
-							<div class="journey-tour__elephant elephant">
+							<div class="journey-tour__giraffe giraffe mobile">
+								<svg xmlns="http://www.w3.org/2000/svg" width="69" height="267" viewbox="0 0 69 267" fill="none">
+									<path d="M199.385 239.626C201.309 233.209 205.075 207.783 198.858 195.301C193.775 185.096 184.389 177.906 174.883 171.661C160.41 162.152 145.814 152.697 130.564 144.476C112.895 134.953 99.7013 121.513 88.1634 105.703C76.5616 89.8065 67.6482 72.7491 59.7366 54.9336C55.0753 44.4391 48.265 34.8388 42.4196 24.8377C42.0359 24.1844 41.6328 23.5398 41.4631 23.2609C42.6963 21.0011 43.7626 19.0467 44.8301 17.0897C42.4979 16.6092 40.1816 16.029 37.8303 15.6723C34.6205 15.1863 31.2743 15.25 28.1876 14.3823C24.2805 13.2844 24.0068 11.2791 26.8564 8.29339C27.122 8.01499 27.6649 7.789 27.6803 7.51345C27.7945 5.5293 28.61 2.89348 27.6245 1.73064C26.639 0.567788 23.2676 -0.00735799 21.9594 0.769189C20.6512 1.54574 20.2293 4.29193 20.092 6.22464C19.93 8.50418 20.6713 10.8372 20.6925 13.147C20.7207 16.155 19.5896 17.9541 15.8648 17.2939C14.8523 17.1144 13.3884 18.4699 12.4207 19.4056C11.8555 19.9504 11.6404 21.0622 11.6493 21.9171C11.7229 29.4442 8.3575 35.3681 2.97819 40.4416C2.06107 41.3072 1.12591 42.4263 0.831011 43.5843C0.358485 45.4435 0.412859 47.433 0.24535 49.3676C2.61444 49.2166 5.89448 49.9715 7.18567 48.7432C10.9747 45.1371 15.5231 44.4888 20.2902 43.535C23.26 42.9412 26.0296 41.2392 28.7694 39.8177C33.2866 37.474 34.9265 37.775 36.0681 42.5817C39.2284 55.8947 42.2512 69.2477 44.8789 82.6659C49.1842 104.64 53.5458 126.585 61.0643 147.813C63.7522 155.403 67.6994 162.706 67.3064 171.011C66.592 186.034 68.283 211.492 67.3064 226.5C66.9512 231.967 75.2958 285.07 74.5 290.5C74.139 292.965 185.953 303.266 189.674 304.493C193.837 305.869 184.234 290.154 199.385 239.626Z" fill="var(--color, #BEBEBE)"></path>
+								</svg>
+							</div>
+							<div class="journey-tour__elephant elephant pc">
 								<svg class="icon">
 									<use xlink:href="./assets/img/animals.svg#elephant"></use>
+								</svg>
+							</div>
+							<div class="journey-tour__elephant elephant mobile">
+								<svg xmlns="http://www.w3.org/2000/svg" width="84" height="144" viewbox="0 0 84 144" fill="none">
+									<path d="M10.7034 33.4212C5.28088 28.2511 2.8564 21.8042 2.65307 14.1227C2.53456 9.64552 4.61711 7.03395 8.76673 6.33393C9.72901 6.17182 10.7372 6.02472 11.6703 6.15603C19.3054 7.22759 26.9601 5.64881 34.6063 4.50532C38.2128 3.96623 41.4183 4.665 44.2662 6.82247C48.3035 9.88184 52.2283 13.1276 56.4298 15.9171C58.8696 17.5366 61.6667 18.6835 64.4583 19.5794C69.9004 21.3263 74.037 19.0362 76.2869 13.0592C77.2653 10.4593 77.7492 7.66535 78.3508 4.94144C78.7006 3.35856 78.8412 1.73755 79.0671 0.184584C83.4605 -0.375364 83.9574 0.212126 83.2999 4.4509C81.6267 15.2334 76.8522 24.2143 68.2817 30.5113C62.1093 35.0469 55.5932 39.0355 49.0653 42.904C46.6702 44.3238 44.6719 45.809 43.0683 48.235C40.1902 52.5892 36.9395 56.7389 36.2872 62.1728C35.9317 64.9404 35.7638 67.7172 35.7849 70.4805C36.3172 91.3861 -1.86737 121.457 -8.40743 131.5C-13.0566 142.476 -20.2809 146.075 -30.7356 141.989C-38.8947 138.801 -119.391 82.8922 -136.084 76.2184C-142.726 73.5627 -143.024 71.9413 -136.78 67.4118C-126.402 59.8843 -115.739 52.8068 -104.941 46.0695C-99.0476 42.3935 -93.7738 38.7211 -89.7926 32.2347C-85.196 24.7445 -78.9941 18.618 -71.2384 14.6423C-65.0972 11.4942 -59.0998 10.9021 -52.8976 12.595C-37.5936 16.7724 -22.9782 22.7912 -8.40743 28.9216C-3.09671 31.157 2.28578 33.0273 8.1499 33.2974C9.00131 33.3363 9.85248 33.3775 10.7034 33.4212Z" fill="var(--color, #BEBEBE)"></path>
 								</svg>
 							</div>
 						</div>

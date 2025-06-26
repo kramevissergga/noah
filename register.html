@@ -6,8 +6,8 @@
 		<link rel="preload" href="./assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Register</title>
-		<script type="module" crossorigin="" src="./js/app.min.js?v=1750389446954"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750389446954">
+		<script type="module" crossorigin="" src="./js/app.min.js?v=1750903969487"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1750903969487">
 	</head>
 	<body>
 		<div data-stopper="" class="wrapper">
@@ -921,16 +921,19 @@ One of more fields have an error. <br> Please check and try again.
 										<div class="register__field field--18 field">
 											<div class="field__text">Dinner Package included*</div>
 											<div class="field__radiobox">
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												<!-- Зміна: всі <input> всередину radio__icon і <div> замість <label> -->
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input checked type="radio" name="dinner">
+													</span>
 													No
-													<input checked type="radio" name="dinner">
-												</label>
-												<label class="field__radio radio">
-													<span class="radio__icon"></span>
+												</div>
+												<div class="field__radio radio">
+													<span class="radio__icon">
+														<input type="radio" name="dinner">
+													</span>
 													Yes
-													<input type="radio" name="dinner">
-												</label>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -1213,16 +1216,18 @@ One of more fields have an error. <br> Please check and try again.
 									<div class="register__field register__field--walking field--18 field">
 										<div class="field__text field__text--bold">Do you have difficulty walking?*</div>
 										<div class="field__radiobox">
-											<label class="field__radio radio">
-												<span class="radio__icon"></span>
+											<div class="field__radio radio">
+												<span class="radio__icon">
+													<input checked type="radio" name="walking">
+												</span>
 												No
-												<input checked type="radio" name="walking">
-											</label>
-											<label class="field__radio radio">
-												<span class="radio__icon"></span>
+											</div>
+											<div class="field__radio radio">
+												<span class="radio__icon">
+													<input type="radio" name="walking">
+												</span>
 												Yes
-												<input type="radio" name="walking">
-											</label>
+											</div>
 										</div>
 									</div>
 									<div class="register__label register__label--bold">In case of emergency, please notify:</div>
@@ -1265,16 +1270,18 @@ One of more fields have an error. <br> Please check and try again.
 								<form action="#" class="register__form">
 									<div class="register__field field--18 field">
 										<div class="field__radiobox">
-											<label class="field__radio radio">
-												<span class="radio__icon"></span>
+											<div class="field__radio radio">
+												<span class="radio__icon">
+													<input checked type="radio" name="walking">
+												</span>
 												No
-												<input checked type="radio" name="walking">
-											</label>
-											<label class="field__radio radio">
-												<span class="radio__icon"></span>
+											</div>
+											<div class="field__radio radio">
+												<span class="radio__icon">
+													<input type="radio" name="walking">
+												</span>
 												Yes
-												<input type="radio" name="walking">
-											</label>
+											</div>
 										</div>
 									</div>
 									<div class="register__field field--18 field">
@@ -1290,20 +1297,23 @@ One of more fields have an error. <br> Please check and try again.
 					<form id="submit" action="#" class="register__footer">
 						<div class="register__container">
 							<div class="register__checkboxes">
-								<label class="register__checkbox checkbox checkbox--block">
-									<div class="checkbox__icon _icon-check"></div>
+								<!-- Зміна: всі <input> всередину checkbox__icon і <div> замість <label> -->
+								<div class="register__checkbox checkbox checkbox--block">
+									<div class="checkbox__icon _icon-check">
+										<input type="checkbox">
+									</div>
 									<div class="checkbox__label">I certify that all of the information I have entered in this form is correct.</div>
-									<input type="checkbox">
-								</label>
-								<label class="register__checkbox checkbox checkbox--block">
-									<div class="checkbox__icon _icon-check"></div>
+								</div>
+								<div class="register__checkbox checkbox checkbox--block">
+									<div class="checkbox__icon _icon-check">
+										<input type="checkbox">
+									</div>
 									<div class="checkbox__label">
 										I acknowledge that I have read and agree to the
 										<a href="#">Terms and Conditions and Cancelation
                 Policy</a>
 									</div>
-									<input type="checkbox">
-								</label>
+								</div>
 							</div>
 							<div class="register__inputs">
 								<div class="register__field field--18 field">
