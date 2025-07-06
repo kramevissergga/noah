@@ -1133,7 +1133,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const menuItems = document.querySelectorAll(".menu__item");
   const menu = document.querySelector(".menu");
   const decor = document.querySelector(".decor");
+  const MENU_ACTIVE_CLASS = "_submenu-open";
   let timeoutId = null;
+  let openClassTimeoutId = null;
+  let closeClassTimeoutId = null;
   let currentActiveItem = null;
   setTimeout(() => {
     updateHeaderHeights();
@@ -1147,6 +1150,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     return offsetLeft;
   }
+  function updateDecorPosition(item) {
+    const offset = getOffsetFromMenu(item);
+    decor.style.width = item.offsetWidth + "px";
+    decor.style.left = offset + "px";
+  }
+  function showMenuClassWithDelay() {
+    if (closeClassTimeoutId) {
+      clearTimeout(closeClassTimeoutId);
+      closeClassTimeoutId = null;
+    }
+    if (!menu.classList.contains(MENU_ACTIVE_CLASS)) {
+      openClassTimeoutId = setTimeout(() => {
+        menu.classList.add(MENU_ACTIVE_CLASS);
+      }, 300);
+    }
+  }
+  function hideMenuDecor() {
+    if (openClassTimeoutId) {
+      clearTimeout(openClassTimeoutId);
+      openClassTimeoutId = null;
+    }
+    if (currentActiveItem) {
+      currentActiveItem.classList.remove("_active");
+      currentActiveItem = null;
+    }
+    closeClassTimeoutId = setTimeout(() => {
+      menu.classList.remove(MENU_ACTIVE_CLASS);
+    }, 300);
+    decor.classList.add("_hidden");
+  }
   menuItems.forEach((item) => {
     const link = item.querySelector(".menu__link");
     const submenu = item.querySelector(".submenu");
@@ -1155,24 +1188,18 @@ document.addEventListener("DOMContentLoaded", function() {
         clearTimeout(timeoutId);
         timeoutId = null;
       }
+      showMenuClassWithDelay();
       if (decor.classList.contains("_hidden")) {
         decor.style.transition = "none";
         decor.classList.remove("_hidden");
-        setTimeout(() => {
-          submenu.classList.remove("_fade");
-        }, 300);
         requestAnimationFrame(() => {
-          const offset = getOffsetFromMenu(item);
-          decor.style.width = item.offsetWidth + "px";
-          decor.style.left = offset + "px";
+          updateDecorPosition(item);
           requestAnimationFrame(() => {
             decor.style.transition = "";
           });
         });
       } else {
-        const newOffset = getOffsetFromMenu(item);
-        decor.style.width = item.offsetWidth + "px";
-        decor.style.left = newOffset + "px";
+        updateDecorPosition(item);
       }
       if (currentActiveItem) {
         currentActiveItem.classList.remove("_active");
@@ -1188,12 +1215,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (timeoutId) clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           if (currentActiveItem === item) {
-            item.classList.remove("_active");
-            currentActiveItem = null;
-            submenu.classList.add("_fade");
-            setTimeout(() => {
-              decor.classList.add("_hidden");
-            }, 300);
+            hideMenuDecor();
           }
         }, 1e3);
       }
@@ -1204,16 +1226,23 @@ document.addEventListener("DOMContentLoaded", function() {
           clearTimeout(timeoutId);
           timeoutId = null;
         }
+        if (closeClassTimeoutId) {
+          clearTimeout(closeClassTimeoutId);
+          closeClassTimeoutId = null;
+        }
       });
       submenu.addEventListener("mouseleave", function() {
         timeoutId = setTimeout(() => {
           if (currentActiveItem === item) {
-            item.classList.remove("_active");
-            currentActiveItem = null;
-            decor.classList.add("_hidden");
+            hideMenuDecor();
           }
         }, 500);
       });
+    }
+  });
+  window.addEventListener("resize", () => {
+    if (currentActiveItem && !decor.classList.contains("_hidden")) {
+      updateDecorPosition(currentActiveItem);
     }
   });
 });
@@ -10306,44 +10335,47 @@ document.querySelectorAll("[data-arrow-symbol]").forEach((element) => {
 });
 window.scrollOffset = 0;
 window.addEventListener("load", function() {
-  setTimeout(() => {
+  function initStickyScrollTriggers() {
     const headerHeight = parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue("--header-height").trim()
     );
     const stoppers = document.querySelectorAll("[data-stopper]");
-    if (stoppers) {
-      stoppers.forEach((stopper) => {
-        let cumulativeHeight = 0;
-        stopper.querySelectorAll("[data-sticky]").forEach((el, index) => {
-          const startOffset = headerHeight + cumulativeHeight;
-          const stopper2 = el.closest(`[data-stopper]`);
-          ScrollTrigger.create({
-            trigger: el,
-            start: `top ${startOffset}px`,
-            end: () => {
-              const stickyOffsetInStopper = el.offsetTop - stopper2.offsetTop;
-              const availableScrollDistance = stopper2.offsetHeight - el.offsetHeight - stickyOffsetInStopper;
-              const precisionAdjustment = 1;
-              return `+=${availableScrollDistance + precisionAdjustment}`;
-            },
-            pin: true,
-            pinSpacing: false,
-            onEnter: () => {
-              el.classList.add("pinned");
-            },
-            onLeaveBack: () => {
-              el.classList.remove("pinned");
-            },
-            onToggle: ({ isActive }) => {
-              el.classList.toggle("pinned", isActive);
-            }
-          });
-          cumulativeHeight += el.offsetHeight;
+    stoppers.forEach((stopper) => {
+      let cumulativeHeight = 0;
+      const stickyElements = stopper.querySelectorAll("[data-sticky]");
+      stickyElements.forEach((el) => {
+        const startOffset = headerHeight + cumulativeHeight;
+        const stickyOffsetInStopper = el.offsetTop - stopper.offsetTop;
+        ScrollTrigger.create({
+          trigger: el,
+          start: `top ${startOffset}px`,
+          end: () => {
+            const availableScrollDistance = stopper.offsetHeight - el.offsetHeight - stickyOffsetInStopper;
+            return `+=${availableScrollDistance + 1}`;
+          },
+          pin: true,
+          pinSpacing: false,
+          onEnter: () => el.classList.add("pinned"),
+          onLeaveBack: () => el.classList.remove("pinned"),
+          onToggle: ({ isActive }) => el.classList.toggle("pinned", isActive)
         });
-        window.scrollOffset = cumulativeHeight;
+        cumulativeHeight += el.offsetHeight;
       });
-    }
+      window.scrollOffset = cumulativeHeight;
+    });
+  }
+  setTimeout(() => {
+    initStickyScrollTriggers();
   }, 300);
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      initStickyScrollTriggers();
+      ScrollTrigger.refresh();
+    }, 200);
+  });
 });
 document.addEventListener("click", (event) => {
   const playBtn = event.target.closest(".videobox__play");
@@ -14561,6 +14593,27 @@ function initMap() {
 }
 if (mapEl) {
   window.onload = initMap;
+}
+const roomsEls = document.querySelectorAll(".rooms-inp");
+if (roomsEls) {
+  roomsEls.forEach((item) => {
+    updateRoomsWidth(item);
+  });
+}
+function updateRoomsWidth(roomsItinerary) {
+  const labels = roomsItinerary.querySelectorAll(".rooms-inp__label");
+  if (labels.length) {
+    let maxWidth = 0;
+    labels.forEach((label) => {
+      label.style.minWidth = 0;
+      const width = label.offsetWidth;
+      if (width > maxWidth) {
+        maxWidth = width;
+      }
+      label.style.minWidth = "";
+      roomsItinerary.style.setProperty("--min-label-width", `${maxWidth}px`);
+    });
+  }
 }
 class CountersDropdown {
   constructor() {
