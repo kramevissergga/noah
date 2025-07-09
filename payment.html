@@ -6,8 +6,8 @@
 		<link rel="preload" href="./assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Payment</title>
-		<script type="module" crossorigin="" src="./js/app.min.js?v=1751960997572"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1751960997572">
+		<script type="module" crossorigin="" src="./js/app.min.js?v=1752031504461"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1752031504461">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -535,15 +535,24 @@
 										</div>
 										<div class="payment__field field--18 field">
 											<div class="field__text">State / Province</div>
-											<div class="field__input field__input--gray">
-												<input type="text">
-											</div>
+											<select name="form[]" data-fls-select="" data-fls-select-modif="reg">
+												<option value="" selected>Choose</option>
+												<option value="1">Alabama</option>
+												<option value="2">Alaska</option>
+												<option value="3">Arizona</option>
+												<option value="4">Arkansas</option>
+											</select>
 										</div>
 										<div class="payment__field field--18 field">
 											<div class="field__text">Country</div>
-											<div class="field__input field__input--gray">
-												<input type="text">
-											</div>
+											<select name="form[]" data-fls-select-modif="reg" data-fls-select="" data-fls-select-search="">
+												<option value="" selected>Choose</option>
+												<option value="2">Ukraine</option>
+												<option value="3">Germany</option>
+												<option value="4">Italy</option>
+												<option value="5">Hungary</option>
+												<option value="6">USA</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -641,8 +650,7 @@
 									</div>
 								</div>
 								<div class="payment__footer">
-									<!-- Зміна: всі <input> всередину checkbox__icon і <div> замість <label> -->
-									<div class="payment__checkbox checkbox checkbox--block">
+									<label class="payment__checkbox checkbox checkbox--block">
 										<div class="checkbox__icon _icon-check">
 											<input type="checkbox">
 										</div>
@@ -652,7 +660,7 @@
 												<span style="color: #EF4136">*</span>
 											</p>
 										</div>
-									</div>
+									</label>
 									<button class="payment__button button button--orange">Submit Payment</button>
 								</div>
 							</form>

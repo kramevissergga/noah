@@ -6,8 +6,8 @@
 		<link rel="preload" href="./assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Register</title>
-		<script type="module" crossorigin="" src="./js/app.min.js?v=1751960997572"></script>
-		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1751960997572">
+		<script type="module" crossorigin="" src="./js/app.min.js?v=1752031504461"></script>
+		<link rel="stylesheet" crossorigin="" href="./css/app.min.css?v=1752031504461">
 	</head>
 	<body>
 		<div data-stopper="" class="wrapper">
@@ -714,7 +714,7 @@
 									<div class="roadmap-tour__icon"></div>
 									Additional Information
 								</div>
-								<div data-fls-scrollto="#submit" data-fls-scrollto-header="" class="roadmap-tour__item">
+								<div data-fls-scrollto="#submit" data-fls-scrollto-header="" class="roadmap-tour__item _disabled">
 									<div class="roadmap-tour__icon"></div>
 									Submit Your Request
 								</div>
@@ -921,19 +921,18 @@ One of more fields have an error. <br> Please check and try again.
 										<div class="register__field field--18 field">
 											<div class="field__text">Dinner Package included*</div>
 											<div class="field__radiobox">
-												<!-- Зміна: всі <input> всередину radio__icon і <div> замість <label> -->
-												<div class="field__radio radio">
+												<label class="field__radio radio">
 													<span class="radio__icon">
 														<input checked type="radio" name="dinner">
 													</span>
 													No
-												</div>
-												<div class="field__radio radio">
+												</label>
+												<label class="field__radio radio">
 													<span class="radio__icon">
 														<input type="radio" name="dinner">
 													</span>
 													Yes
-												</div>
+												</label>
 											</div>
 										</div>
 									</div>
@@ -966,7 +965,7 @@ One of more fields have an error. <br> Please check and try again.
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none">
 													<path d="M7 12V3.85L4.4 6.45L3 5L8 0L13 5L11.6 6.45L9 3.85V12H7ZM2 16C1.45 16 0.979333 15.8043 0.588 15.413C0.196666 15.0217 0.000666667 14.5507 0 14V11H2V14H14V11H16V14C16 14.55 15.8043 15.021 15.413 15.413C15.0217 15.805 14.5507 16.0007 14 16H2Z" fill="#F27126"></path>
 												</svg>
-												Passport Photocopy
+												Upload Passport Photocopy
 												<input type="file" accept=".pdf,.doc,.docx,.jpg,.png,.bmp">
 											</label>
 											<div class="uploads-reg__file">
@@ -997,7 +996,7 @@ One of more fields have an error. <br> Please check and try again.
 							<div class="register__block register__block--person">
 								<div class="register__block-header">
 									<h2 class="register__block-title section-title">Traveler 2</h2>
-									<button class="register__remove-person register__button--person button">
+									<button data-fls-dynamic="{.register__block} .register__person-buttons, 767.98, first" class="register__remove-person register__button--person button">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
 											<path d="M17 10H20H23M1 20V19C1 17.1435 1.7375 15.363 3.05025 14.0503C4.36301 12.7375 6.14348 12 8 12M8 12C9.85652 12 11.637 12.7375 12.9497 14.0503C14.2625 15.363 15 17.1435 15 19V20M8 12C9.06087 12 10.0783 11.5786 10.8284 10.8284C11.5786 10.0783 12 9.06087 12 8C12 6.93913 11.5786 5.92172 10.8284 5.17157C10.0783 4.42143 9.06087 4 8 4C6.93913 4 5.92172 4.42143 5.17157 5.17157C4.42143 5.92172 4 6.93913 4 8C4 9.06087 4.42143 10.0783 5.17157 10.8284C5.92172 11.5786 6.93913 12 8 12Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 										</svg>
@@ -1052,12 +1051,14 @@ One of more fields have an error. <br> Please check and try again.
 											</label>
 										</div>
 									</div>
-									<button class="register__button register__button--person button button--blue">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
-											<path d="M17 10H20M20 10H23M20 10V7M20 10V13M1 20V19C1 17.1435 1.7375 15.363 3.05025 14.0503C4.36301 12.7375 6.14348 12 8 12M8 12C9.85652 12 11.637 12.7375 12.9497 14.0503C14.2625 15.363 15 17.1435 15 19V20M8 12C9.06087 12 10.0783 11.5786 10.8284 10.8284C11.5786 10.0783 12 9.06087 12 8C12 6.93913 11.5786 5.92172 10.8284 5.17157C10.0783 4.42143 9.06087 4 8 4C6.93913 4 5.92172 4.42143 5.17157 5.17157C4.42143 5.92172 4 6.93913 4 8C4 9.06087 4.42143 10.0783 5.17157 10.8284C5.92172 11.5786 6.93913 12 8 12Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-										</svg>
-										Add Person
-									</button>
+									<div class="register__person-buttons">
+										<button class="register__button register__button--person button button--blue">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
+												<path d="M17 10H20M20 10H23M20 10V7M20 10V13M1 20V19C1 17.1435 1.7375 15.363 3.05025 14.0503C4.36301 12.7375 6.14348 12 8 12M8 12C9.85652 12 11.637 12.7375 12.9497 14.0503C14.2625 15.363 15 17.1435 15 19V20M8 12C9.06087 12 10.0783 11.5786 10.8284 10.8284C11.5786 10.0783 12 9.06087 12 8C12 6.93913 11.5786 5.92172 10.8284 5.17157C10.0783 4.42143 9.06087 4 8 4C6.93913 4 5.92172 4.42143 5.17157 5.17157C4.42143 5.92172 4 6.93913 4 8C4 9.06087 4.42143 10.0783 5.17157 10.8284C5.92172 11.5786 6.93913 12 8 12Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
+											Add Person
+										</button>
+									</div>
 								</form>
 							</div>
 							<div class="register__block register__block--night">
@@ -1297,27 +1298,28 @@ One of more fields have an error. <br> Please check and try again.
 					<form id="submit" action="#" class="register__footer">
 						<div class="register__container">
 							<div class="register__checkboxes">
-								<!-- Зміна: всі <input> всередину checkbox__icon і <div> замість <label> -->
-								<div class="register__checkbox checkbox checkbox--block">
+								<label class="register__checkbox checkbox checkbox--block">
 									<div class="checkbox__icon _icon-check">
 										<input type="checkbox">
 									</div>
 									<div class="checkbox__label">I certify that all of the information I have entered in this form is correct.</div>
-								</div>
-								<div class="register__checkbox checkbox checkbox--block">
+								</label>
+								<label class="register__checkbox checkbox checkbox--block">
 									<div class="checkbox__icon _icon-check">
 										<input type="checkbox">
 									</div>
 									<div class="checkbox__label">
 										I acknowledge that I have read and agree to the
-										<a href="#">Terms and Conditions and Cancelation
+										<a target="_blank" href="#">Terms and Conditions</a>
+										and
+										<a target="_blank" href="#">Cancelation
                 Policy</a>
 									</div>
-								</div>
+								</label>
 							</div>
 							<div class="register__inputs">
 								<div class="register__field field--18 field">
-									<div class="field__text">Sigmature: *</div>
+									<div class="field__text">Signature: *</div>
 									<div class="field__input">
 										<textarea></textarea>
 									</div>

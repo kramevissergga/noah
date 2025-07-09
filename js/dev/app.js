@@ -1288,38 +1288,52 @@ class DynamicAdapt {
     this.daClassname = "--dynamic";
     this.nodes = [...document.querySelectorAll("[data-fls-dynamic]")];
     this.nodes.forEach((node) => {
+      var _a2;
       const data = node.dataset.flsDynamic.trim();
       const dataArray = data.split(`,`);
       const object = {};
       object.element = node;
       object.parent = node.parentNode;
-      object.destinationParent = dataArray[3] ? node.closest(dataArray[3].trim()) || document : document;
-      dataArray[3] ? dataArray[3].trim() : null;
-      const objectSelector = dataArray[0] ? dataArray[0].trim() : null;
-      if (objectSelector) {
-        const foundDestination = object.destinationParent.querySelector(objectSelector);
-        if (foundDestination) {
-          object.destination = foundDestination;
+      const selector3 = dataArray[0] ? dataArray[0].trim() : null;
+      let destinationParent = dataArray[3] ? node.closest(dataArray[3].trim()) || document : document;
+      if (selector3 && selector3.startsWith("{") && selector3.includes("}")) {
+        const parts = selector3.split("}");
+        const parentTag = parts[0].slice(1).trim();
+        const childSelector = (_a2 = parts[1]) == null ? void 0 : _a2.trim();
+        const parentEl = node.closest(parentTag);
+        if (parentEl && childSelector) {
+          object.destination = parentEl.querySelector(childSelector);
+          if (!object.destination) ;
+        } else {
+          object.destination = parentEl;
         }
-      }
+      } else if (selector3) {
+        object.destination = destinationParent.querySelector(selector3);
+        if (!object.destination) ;
+      } else ;
       object.breakpoint = dataArray[1] ? dataArray[1].trim() : `767.98`;
       object.place = dataArray[2] ? dataArray[2].trim() : `last`;
       object.index = this.indexInParent(object.parent, object.element);
       this.objects.push(object);
     });
     this.arraySort(this.objects);
-    this.mediaQueries = this.objects.map(({ breakpoint }) => `(${this.type}-width: ${breakpoint / 16}em),${breakpoint}`).filter((item, index, self2) => self2.indexOf(item) === index);
+    this.mediaQueries = this.objects.map(
+      ({ breakpoint }) => `(${this.type}-width: ${breakpoint / 16}em),${breakpoint}`
+    ).filter((item, index, self2) => self2.indexOf(item) === index);
     this.mediaQueries.forEach((media) => {
       const mediaSplit = media.split(",");
       const matchMedia3 = window.matchMedia(mediaSplit[0]);
       const mediaBreakpoint = mediaSplit[1];
-      const objectsFilter = this.objects.filter(({ breakpoint }) => breakpoint === mediaBreakpoint);
+      const objectsFilter = this.objects.filter(
+        ({ breakpoint }) => breakpoint === mediaBreakpoint
+      );
       matchMedia3.addEventListener("change", () => {
         this.mediaHandler(matchMedia3, objectsFilter);
       });
       this.mediaHandler(matchMedia3, objectsFilter);
     });
   }
+  // Інші методи залишаються без змін...
   mediaHandler(matchMedia3, objects) {
     if (matchMedia3.matches) {
       objects.forEach((object) => {
@@ -1390,7 +1404,6 @@ class DynamicAdapt {
         }
         return b.breakpoint - a.breakpoint;
       });
-      return;
     }
   }
 }
