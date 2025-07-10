@@ -1117,18 +1117,20 @@ document.querySelector("[data-fls-menu]") ? window.addEventListener("load", menu
 function updateHeaderHeights() {
   const headerEl = document.querySelector("header.header");
   if (headerEl) {
+    headerEl.style.transition = "none";
     const headerHeight = headerEl.offsetHeight;
     document.documentElement.style.setProperty(
       "--header-height",
       `${headerHeight}px`
     );
+    headerEl.style.transition = "";
   }
 }
 window.addEventListener("resize", () => {
-  updateHeaderHeights();
+  setTimeout(() => {
+    updateHeaderHeights();
+  }, 300);
 });
-window.onload = function() {
-};
 document.addEventListener("DOMContentLoaded", function() {
   const menuItems = document.querySelectorAll(".menu__item");
   const menu = document.querySelector(".menu");
@@ -10387,7 +10389,7 @@ window.addEventListener("load", function() {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       initStickyScrollTriggers();
       ScrollTrigger.refresh();
-    }, 200);
+    }, 300);
   });
 });
 document.addEventListener("click", (event) => {
@@ -11867,6 +11869,15 @@ class Popup {
         if (this.options.hashSettings.location) {
           this._getHash();
           this._setHash();
+        }
+        const splideElements = this.targetOpen.element.querySelectorAll(".splide");
+        if (splideElements.length) {
+          splideElements.forEach((splideElement) => {
+            const splideInstance = splideElement._splide;
+            if (splideInstance) {
+              splideInstance.refresh();
+            }
+          });
         }
         this.options.on.beforeOpen(this);
         document.dispatchEvent(

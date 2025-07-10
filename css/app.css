@@ -336,6 +336,14 @@ body {
 .text b {
   font-weight: 500;
 }
+.text hr {
+  width: 100%;
+  height: 0.0625rem;
+  background: #e2e2e2;
+}
+.text hr:not(:last-child) {
+  margin-bottom: 1.875rem;
+}
 .text ul li {
   display: flex;
   gap: 0.8125rem;
@@ -956,11 +964,14 @@ body {
   font-weight: 300;
   line-height: 1.21;
   display: flex;
-  gap: 0.75rem;
+  gap: 0.875rem;
   flex-direction: column;
   align-items: center;
   position: relative;
   cursor: pointer;
+}
+.roadmap-tour__item._active {
+  gap: 0.75rem;
 }
 .roadmap-tour__item._active:not(:has(~ ._active)) {
   font-weight: 600;
@@ -993,6 +1004,7 @@ body {
   transition: all 0.3s;
   width: 1.875rem;
   height: 1.875rem;
+  margin-top: 0.125rem;
 }
 ._active .roadmap-tour__icon {
   background-color: #ff8300;
@@ -1000,6 +1012,7 @@ body {
   border-width: 0.125rem;
   width: 2.125rem;
   height: 2.125rem;
+  margin-top: 0;
 }
 ._active .roadmap-tour__icon::before {
   content: "";
@@ -1213,6 +1226,12 @@ body {
 .item-feedback__text {
   color: #303030;
   font-size: 1.3125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 .item-feedback__text:not(:last-child) {
   margin-bottom: 1.4375rem;
@@ -3905,18 +3924,19 @@ span.flatpickr-weekday {
 .main-tour__title {
   color: #2ec8d6;
   font-weight: 600;
-  display: flex;
-  align-items: center;
   gap: 0.3125rem 1.875rem;
   flex-wrap: wrap;
+  vertical-align: middle;
 }
 .main-tour__title span {
-  display: block;
+  display: inline-block;
+  margin-left: 1.875rem;
   background-color: var(--color, #ff8300);
   color: #fff;
   font-size: 1.25rem;
   padding: 0.3125rem 0.3125rem 0.3125rem 0.6875rem;
   position: relative;
+  vertical-align: middle;
   margin-right: 0.75rem;
   border-bottom-left-radius: 0.3125rem;
 }
@@ -4299,7 +4319,7 @@ span.flatpickr-weekday {
   margin-bottom: 4.1875rem;
 }
 .hotels-tour__row {
-  padding: 0.8125rem 0.625rem;
+  padding: 0.9375rem 0.625rem 0.6875rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.8125rem 1rem;
@@ -4464,6 +4484,7 @@ span.flatpickr-weekday {
   padding-bottom: 1.8125rem;
   padding-top: 0.25rem;
   padding-left: 0.8125rem;
+  padding-right: 1.625rem;
 }
 .info-spoilers__text {
   color: #373737;
@@ -4556,7 +4577,7 @@ span.flatpickr-weekday {
   gap: 2.0625rem 4.3125rem;
 }
 .journey-tour__button {
-  padding: 1rem 1.875rem;
+  padding: 1rem 0.625rem;
   width: 100%;
 }
 .journey-tour__button.button--border {
@@ -4940,6 +4961,8 @@ body::after {
   border-radius: 0.25rem;
   border: 0.0625rem solid #d9d9d9;
   overflow: hidden;
+  min-height: 0;
+  height: max-content;
 }
 .gallery-popup__main .splide__arrow--prev {
   left: auto !important;
@@ -4968,6 +4991,8 @@ body::after {
   overflow: hidden;
   opacity: 0.6;
   transition: all 0.3s;
+  min-height: 0;
+  height: max-content;
 }
 .gallery-popup__thumb .splide__slide.is-active {
   border-color: #3aefff !important;
@@ -5942,6 +5967,12 @@ body::after {
   color: #585858;
   line-height: 1.62;
   max-width: 26.3125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .item-blog--big .item-blog__text {
   max-width: 100%;
@@ -5952,6 +5983,7 @@ body::after {
 .item-blog__footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1.25rem;
 }
 .item-blog__date {
@@ -7723,16 +7755,6 @@ body::after {
     column-gap: 0.625rem;
   }}
 @media (max-width: 56.24875em){
-  .journey-tour__booking-header {
-    padding-top: calc(var(--header-height) + 1.5rem);
-    padding-bottom: 1.875rem;
-  }
-  .journey-tour__booking-body {
-    padding-top: 1rem;
-    padding-bottom: 3.75rem;
-    border-radius: 0.625rem;
-    background: #fff;
-  }
   .journey-tour__booking-body .journey-tour__summary:not(:last-child) {
     margin-bottom: 2.0625rem;
   }
@@ -7913,6 +7935,9 @@ body::after {
   }
   .roadmap-tour__item {
     font-size: 0.8125rem;
+    gap: 0.8125rem;
+  }
+  .roadmap-tour__item._active:not(:has(~ ._active)) {
     gap: 0.6875rem;
   }
   .hero-journey {
@@ -8341,13 +8366,13 @@ body::after {
     margin-bottom: 1.125rem;
   }
   .main-tour__title {
-    justify-content: center;
-    text-align: center;
     gap: 0.3125rem 0.9375rem;
+    text-align: center;
   }
   .main-tour__title span {
     font-size: 0.6875rem;
     padding: 0.25rem 0.125rem 0.25rem 0.375rem;
+    margin-left: 0.9375rem;
   }
   .main-tour__title span::after {
     width: 0.5rem;
@@ -8543,6 +8568,10 @@ body::after {
   .hotels-tour__block--rates .hotels-tour__title img {
     width: 3rem;
   }
+  .hotels-tour__block:not(.hotels-tour__block--rates) .hotels-tour__table {
+    padding-top: 0.8125rem;
+    border-top: 0.0625rem solid #d4d4db;
+  }
   .hotels-tour__table:not(:last-child) {
     margin-bottom: 1.5rem;
   }
@@ -8708,6 +8737,10 @@ body::after {
     aspect-ratio: 85/143;
     transform: translate(0, -10.75rem);
   }
+  .journey-tour__booking-header {
+    padding-top: calc(var(--header-height) + 1.5rem);
+    padding-bottom: 1.875rem;
+  }
   .journey-tour__booking-header .journey-tour__title {
     text-align: center;
   }
@@ -8717,6 +8750,12 @@ body::after {
   .page__booking--thanks .journey-tour__booking-body {
     padding-bottom: 7.0625rem;
     padding-top: 1.5rem;
+  }
+  .journey-tour__booking-body {
+    padding-top: 1rem;
+    padding-bottom: 3.75rem;
+    border-radius: 0.625rem;
+    background: #fff;
   }
   .details-journey {
     padding: 1.5rem 0.6875rem 1.6875rem;
@@ -9321,12 +9360,14 @@ body::after {
   .item-blog__title:not(:last-child) {
     margin-bottom: 1rem;
   }
+  .item-blog__text {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
   .item-blog__text:not(:last-child) {
     margin-bottom: 0.8125rem;
   }
   .item-blog__footer {
-    flex-direction: column;
-    justify-content: start;
     gap: 1rem;
   }
   .item-blog__button {
@@ -9399,7 +9440,6 @@ body::after {
     margin-bottom: 1.25rem;
   }
   .blog__actions-title {
-    text-align: center;
     font-weight: 600;
   }
   .blog__footer {
@@ -9503,6 +9543,9 @@ body::after {
     margin-bottom: 1.25rem;
   }
   .payment__body:not(:last-child) {
+    margin-bottom: 2.8125rem;
+  }
+  .payment .payment {
     margin-bottom: 0;
   }
   .payment__container {
@@ -9586,6 +9629,11 @@ body::after {
   }
   .info-payment__body {
     padding: 0.3125rem 0.9375rem 0.75rem;
+  }
+  .info-payment__text:not(:last-child) {
+    padding-bottom: 0.875rem;
+    border-bottom: 0.0625rem solid #e2e2e2;
+    margin-bottom: 1.5625rem;
   }
   .info-payment__link {
     font-size: 1.125rem;
@@ -9993,33 +10041,13 @@ body::after {
     max-width: 29.5rem;
   }}
 @media (max-width: 40.62375em){
-  .field__card-data {
-    width: 100%;
-  }
-  .field__card-data .field {
-    flex-grow: 1;
-  }
   .payment__fields {
     grid-template-columns: 1fr;
     gap: 1.125rem;
   }
   .payment__block--card .payment__fields {
     grid-template-columns: 1fr;
-  }
-  .payment__field--cvc .field__input input {
-    width: auto;
-    max-width: 9.375rem;
-    text-align: left;
-  }
-  .payment__field--cvc .field__input {
-    width: max-content;
-  }
-  .payment__card-data {
-    flex-direction: column;
-    gap: 0.9375rem;
-  }
-  .payment__card-data .payment__field {
-    width: 100%;
+    gap: 1.75rem;
   }}
 @media (max-width: 37.49875em){
   .field__input > textarea {
@@ -10038,6 +10066,7 @@ body::after {
   .journey-tour__footer {
     flex-direction: column;
     align-items: center;
+    padding: 0 1.1875rem;
   }
   .journey-tour__button {
     min-width: 0;
@@ -10151,6 +10180,12 @@ body::after {
   .text .images {
     grid-template-columns: 1fr;
   }
+  .field__card-data {
+    width: 100%;
+  }
+  .field__card-data .field {
+    flex-grow: 1;
+  }
   .breadcrumbs ul li {
     font-size: 0.75rem;
   }
@@ -10205,6 +10240,21 @@ body::after {
   }
   .blog__actions-title {
     font-size: 1.25rem;
+  }
+  .payment__field--cvc .field__input input {
+    width: auto;
+    max-width: 9.375rem;
+    text-align: left;
+  }
+  .payment__field--cvc .field__input {
+    width: max-content;
+  }
+  .payment__card-data {
+    flex-direction: column;
+    gap: 0.9375rem;
+  }
+  .payment__card-data .payment__field {
+    width: 100%;
   }
   .carousel-home__slider {
     margin-right: -1.25rem;
@@ -10385,6 +10435,15 @@ body::after {
     font-size: clamp( 1.25rem , 0.557873332675rem  +  2.2148939312vw , 2.9375rem );
   }}
 @media (min-width: 31.24875em){
+  .field__card-data input {
+    width: 5.25rem;
+  }
+  .payment__block--card .payment__field:nth-child(1) {
+    max-width: 22.9375rem;
+  }
+  .payment__block--card .payment__field:nth-child(2) {
+    max-width: 22.375rem;
+  }
   .create-journey__radio {
     flex: 0 1 21.625rem;
   }}
@@ -10416,16 +10475,6 @@ body::after {
 @media (min-width: 37.49875em) and (max-width: 107.4375em){
   .blog__hero .hero-tours-sub__title {
     font-size: clamp( 1.25rem , -0.09041393361875rem  +  3.5745563082vw , 3.75rem );
-  }}
-@media (min-width: 40.62375em){
-  .field__card-data input {
-    width: 5.25rem;
-  }
-  .payment__block--card .payment__field:nth-child(1) {
-    max-width: 22.9375rem;
-  }
-  .payment__block--card .payment__field:nth-child(2) {
-    max-width: 22.375rem;
   }}
 @media (min-width: 47.99875em) and (min-width: 47.99875em) and (max-width: 107.4375em){
   .error__image {
@@ -10467,6 +10516,9 @@ body::after {
     padding-bottom: clamp( 6.25e-8rem , -3.02824850430625rem  +  6.3090154781vw , 3.75rem );
   }}
 @media (min-width: 47.99875em){
+  .text hr {
+    display: none;
+  }
   .mobile {
     display: none !important;
   }
@@ -10763,9 +10815,6 @@ body::after {
     padding: 0 2.5rem;
   }}
 @media (min-width: 74.99875em){
-  .item-blog__date {
-    margin-top: 1.125rem;
-  }
   .item-blog--big .item-blog__body {
     padding: 3rem 1.75rem 3.25rem;
   }
@@ -10774,9 +10823,6 @@ body::after {
     font-size: 1.4375rem;
     font-weight: 400;
     padding: 1.125rem 1.25rem;
-  }
-  .item-blog--big .item-blog__date {
-    margin-top: -0.5rem;
   }
   .blog__items .item-blog--big {
     grid-column: span 2;
