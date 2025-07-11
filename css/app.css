@@ -342,7 +342,8 @@ body {
   background: #e2e2e2;
 }
 .text hr:not(:last-child) {
-  margin-bottom: 1.875rem;
+  margin-top: 1.375rem;
+  margin-bottom: 1.375rem;
 }
 .text ul li {
   display: flex;
@@ -1508,6 +1509,8 @@ body {
   padding: 0.875rem 1.0625rem 0.875rem 0.875rem;
 }
 .select--phone .select__value {
+  color: #373737;
+  font-weight: 500;
   padding: 0.875rem 0.375rem;
 }
 .select--gray .select__value {
@@ -1667,6 +1670,8 @@ body {
 }
 .select--phone .select__option {
   padding: 0.3125rem 0.375rem;
+  color: #373737;
+  font-weight: 500;
 }
 .select--lang .select__option {
   color: #090909;
@@ -3939,6 +3944,7 @@ span.flatpickr-weekday {
   vertical-align: middle;
   margin-right: 0.75rem;
   border-bottom-left-radius: 0.3125rem;
+  margin-bottom: 0.1875rem;
 }
 .main-tour__title span::after {
   content: "";
@@ -4891,8 +4897,8 @@ body::after {
 }
 .popup--gallery [data-fls-popup-body] {
   width: 100%;
-  max-width: 120rem;
-  padding: 3.8125rem 11.0625rem 6.8125rem;
+  max-width: max-content;
+  padding: 5.6vh 11.0625rem 10vh;
 }
 .popup--dates [data-fls-popup-body] {
   max-width: 120.5rem;
@@ -4952,7 +4958,6 @@ body::after {
   top: 2.9375rem;
   left: 3.125rem;
 }
-
 .gallery-popup__title:not(:last-child) {
   margin-bottom: 2.8125rem;
 }
@@ -6102,8 +6107,8 @@ body::after {
   padding-top: 2.125rem;
   border-top: 0.0625rem solid #b6b6b6;
 }
-.blog__search:not(:last-child) {
-  margin-bottom: 5.4375rem;
+.blog__aside-header:not(:last-child) {
+  padding-bottom: 5.4375rem;
 }
 .blog__spoilers:not(:last-child) {
   margin-bottom: 3rem;
@@ -8379,7 +8384,7 @@ body::after {
   }
   .main-tour__subtitle {
     text-align: center;
-    padding: 0.375rem 0;
+    padding: 0.6875rem 0 0.0625rem;
   }
   .main-tour__subtitle:not(:last-child) {
     margin-bottom: 1.4375rem;
@@ -8887,8 +8892,29 @@ body::after {
   .page__booking .journey-tour__booking-header {
     padding-top: calc(var(--header-height) + 0.875rem);
   }
+  .journey-tour--payment .journey-tour__title {
+    gap: 1.125rem;
+  }
+  .journey-tour--payment .journey-tour__title img {
+    aspect-ratio: 47/39;
+    width: 3.0625rem;
+    height: auto;
+  }
+  [data-fls-popup].popup--gallery {
+    padding: 0;
+  }
+  .popup--gallery [data-fls-popup-wrapper] {
+    flex-direction: row;
+  }
   .popup--gallery [data-fls-popup-body] {
-    padding: 3.125rem 1.25rem;
+    padding: 3.75rem 0;
+    min-height: 33.875rem;
+    display: flex;
+  }
+  .popup--gallery [data-fls-popup-body] [data-fls-popup-content] {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
   }
   .popup--brochure [data-fls-popup-body] {
     padding: 6.125rem 1.0625rem 2.5625rem;
@@ -8916,8 +8942,27 @@ body::after {
     top: 0.9375rem;
     left: 0.9375rem;
   }
+  .gallery-popup {
+    flex-grow: 1;
+  }
+  .gallery-popup__title {
+    padding-left: 2.5625rem;
+    text-align: left;
+    justify-content: start;
+    align-items: start;
+  }
   .gallery-popup__title:not(:last-child) {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.625rem;
+  }
+  .gallery-popup__main {
+    position: static !important;
+  }
+  .gallery-popup__main .splide__pagination {
+    top: auto !important;
+    bottom: 1.875rem !important;
+  }
+  .gallery-popup__thumb {
+    display: none;
   }
   .brochure-popup__title:not(:last-child) {
     margin-bottom: 1.9375rem;
@@ -10289,6 +10334,9 @@ body::after {
   .tours__subtitle {
     max-width: 17.1875rem;
   }
+  .journey-tour__button {
+    font-size: 1.25rem;
+  }
   .why-us-h__items {
     margin: 0 -0.625rem;
   }
@@ -10601,6 +10649,9 @@ body::after {
   .page__booking .journey-tour__footer {
     gap: 2.0625rem 5.0625rem;
   }
+  .gallery-popup__sliders {
+    max-width: 120vh;
+  }
   .faq__hero .hero-journey__title {
     padding-left: 1.875rem;
   }
@@ -10757,6 +10808,9 @@ body::after {
     flex-direction: row;
     align-items: end;
   }
+  .blog__header {
+    min-height: var(--min-height);
+  }
   .blog__header--post {
     padding-bottom: 0;
     border-bottom: 0;
@@ -10766,7 +10820,11 @@ body::after {
     padding-left: 1.875rem;
   }
   .blog__aside {
+    padding-top: 1.375rem;
+  }
+  .blog__aside-header {
     padding-top: 7.625rem;
+    min-height: var(--min-height);
   }
   .blog__aside-content {
     border-top: 0.0625rem solid #d4d4db;
