@@ -4524,7 +4524,7 @@ span.flatpickr-weekday {
   height: 3.5625rem;
 }
 .journey-tour__title:not(:last-child) {
-  margin-bottom: 4.25rem;
+  margin-bottom: 3.4375rem;
 }
 .journey-tour__text {
   font-size: 1.125rem;
@@ -4558,8 +4558,28 @@ span.flatpickr-weekday {
   width: 5.75rem;
   height: 3.625rem;
 }
+.journey-tour__roadmap-wrapper {
+  position: sticky;
+  top: var(--header-height);
+  pointer-events: none;
+  z-index: 40;
+}
+.journey-tour__roadmap-wrapper:not(:last-child) {
+  margin-bottom: 6.1875rem;
+}
 .journey-tour__roadmap:not(:last-child) {
   margin-bottom: 6.8125rem;
+}
+.journey-tour__roadmap-wrapper .journey-tour__roadmap {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.625rem 0;
+  pointer-events: all;
+  background-color: #fbfbfb;
+}
+.journey-tour__roadmap-wrapper .journey-tour__roadmap::before {
+  content: "";
+  top: 1.5rem;
 }
 .page__booking .journey-tour__wrapper, .tour--one .journey-tour__wrapper {
   gap: 5.125rem;
@@ -4569,6 +4589,9 @@ span.flatpickr-weekday {
 }
 .journey-tour__details:not(:last-child) {
   margin-bottom: 6.4375rem;
+}
+.journey-tour__details:not(:first-child) {
+  margin-top: 6.8125rem;
 }
 .journey-tour__summary:not(:last-child) {
   margin-bottom: 6.4375rem;
@@ -7671,11 +7694,17 @@ body::after {
   .check-tour__block {
     align-items: center;
   }
+  .journey-tour__roadmap-wrapper:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
   .journey-tour__roadmap:not(:last-child) {
     margin-bottom: 3.125rem;
   }
   .journey-tour__details:not(:last-child) {
     margin-bottom: 3.125rem;
+  }
+  .journey-tour__details:not(:first-child) {
+    margin-top: 3.125rem;
   }
   .journey-tour__summary:not(:last-child) {
     margin-bottom: 3.125rem;
@@ -8677,7 +8706,7 @@ body::after {
     gap: 1.0625rem;
   }
   .journey-tour__title:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.375rem;
   }
   .journey-tour__title img {
     width: 2.8125rem;
@@ -8709,6 +8738,9 @@ body::after {
     width: 2.9375rem;
     height: 2.4375rem;
   }
+  .journey-tour__roadmap-wrapper:not(:last-child) {
+    margin-bottom: 1.4375rem;
+  }
   .journey-tour__roadmap:not(:last-child) {
     margin-bottom: 2.0625rem;
   }
@@ -8717,6 +8749,9 @@ body::after {
   }
   .journey-tour__details:not(:last-child) {
     margin-bottom: 0.5rem;
+  }
+  .journey-tour__details:not(:first-child) {
+    margin-top: 2.0625rem;
   }
   .journey-tour__summary:not(:last-child) {
     margin-bottom: 1.0625rem;
@@ -10753,6 +10788,9 @@ body::after {
     column-gap: clamp( 0.625rem , -13.66826923076875rem  +  23.0769230769vw , 11.125rem );
   }}
 @media (min-width: 61.99875em) and (max-width: 81.24875em){
+  .journey-tour__roadmap-wrapper {
+    gap: 1.25rem;
+  }
   .journey-tour__wrapper {
     gap: 1.25rem;
   }}
@@ -10790,6 +10828,13 @@ body::after {
   .tours-sub__content {
     padding-top: 3.1875rem;
     border-top: 0.0625rem solid #d4d4db;
+  }
+  .journey-tour__roadmap-wrapper {
+    display: grid;
+    grid-template-columns: 1163fr 482fr;
+    align-items: start;
+    grid-column: span 2;
+    gap: 4.1875rem;
   }
   .journey-tour__wrapper {
     display: grid;
