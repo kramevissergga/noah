@@ -5964,6 +5964,8 @@ body::after {
   border: 0.0625rem solid #d4d4d8;
   background: rgba(255, 255, 255, 0.5);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .item-blog__image {
   display: block;
@@ -5977,6 +5979,7 @@ body::after {
 .item-blog__body {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   padding: 1.75rem 1.75rem 1.5625rem;
 }
 .item-blog__title {
@@ -5999,6 +6002,7 @@ body::after {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  flex-grow: 1;
   line-clamp: 3;
   -webkit-box-orient: vertical;
 }
