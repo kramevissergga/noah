@@ -1114,23 +1114,6 @@ function menuInit() {
   });
 }
 document.querySelector("[data-fls-menu]") ? window.addEventListener("load", menuInit) : null;
-function updateHeaderHeights() {
-  const headerEl = document.querySelector("header.header");
-  if (headerEl) {
-    headerEl.style.transition = "none";
-    const headerHeight = headerEl.offsetHeight;
-    document.documentElement.style.setProperty(
-      "--header-height",
-      `${headerHeight}px`
-    );
-    headerEl.style.transition = "";
-  }
-}
-window.addEventListener("resize", () => {
-  setTimeout(() => {
-    updateHeaderHeights();
-  }, 300);
-});
 document.addEventListener("DOMContentLoaded", function() {
   const menuItems = document.querySelectorAll(".menu__item");
   const menu = document.querySelector(".menu");
@@ -1140,9 +1123,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let openClassTimeoutId = null;
   let closeClassTimeoutId = null;
   let currentActiveItem = null;
-  setTimeout(() => {
-    updateHeaderHeights();
-  }, 300);
   function getOffsetFromMenu(item) {
     let offsetLeft = 0;
     let currentElement = item;
@@ -10363,6 +10343,18 @@ gsapWithCSS.registerPlugin(ScrollTrigger);
 document.querySelectorAll("[data-arrow-symbol]").forEach((element) => {
   element.textContent = "< " + element.textContent;
 });
+const headerEl = document.querySelector("header.header");
+function updateHeaderHeights() {
+  if (headerEl) {
+    headerEl.style.transition = "none";
+    const headerHeight = headerEl.offsetHeight;
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${headerHeight}px`
+    );
+    headerEl.style.transition = "";
+  }
+}
 window.scrollOffset = 0;
 window.addEventListener("load", function() {
   function initStickyScrollTriggers() {
@@ -10406,6 +10398,13 @@ window.addEventListener("load", function() {
       ScrollTrigger.refresh();
     }, 300);
   });
+  const observer = new ResizeObserver(() => {
+    updateHeaderHeights();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initStickyScrollTriggers();
+    ScrollTrigger.refresh();
+  });
+  observer.observe(headerEl);
 });
 document.addEventListener("click", (event) => {
   const playBtn = event.target.closest(".videobox__play");
